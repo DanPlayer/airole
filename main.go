@@ -23,9 +23,14 @@ func main() {
 	}
 	defer jsonFile.Close()
 
+	GptCreate(jsonFile)
+}
+
+// GptCreate 生成Gpt对话
+func GptCreate(jsonFile *os.File) {
 	msg := make([]gpt.ChatMessage, 0)
 	byteValue, _ := ioutil.ReadAll(jsonFile)
-	err = json.Unmarshal(byteValue, &msg)
+	err := json.Unmarshal(byteValue, &msg)
 	if err != nil {
 		fmt.Println(err)
 		return
